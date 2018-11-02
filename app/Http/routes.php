@@ -46,3 +46,19 @@ Route::get('/user/{id}/up_address',function($id){
     $address->update();
 
 });
+
+Route::get('/user/{id}/address',function($id){
+
+    return User::findOrFail($id)->address->name;
+});
+
+Route::get('/user/{id}/del_address',function($id){
+    $user   =   User::findOrFail($id);
+    
+    if($user->address->delete()){
+        return 'Delete successfully';
+    }
+    
+    return 'Delete failed';
+    
+});
