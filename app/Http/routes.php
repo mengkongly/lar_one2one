@@ -32,3 +32,17 @@ Route::get('/user/{id}/in_address/',function($id){
     return 'Insert failed';
 
 });
+
+
+Route::get('/user/{id}/up_address',function($id){
+
+    //used first() to return object of address
+    // u can use many different way to query where like below
+    //$address        =   Address::where('user_id',$id)->first();
+    //$address        =   Address::where('user_id','=',$id)->first();
+    $address        =   Address::whereUserId($id)->first();
+
+    $address->name  =   "Update address to ABC Dallas, TX";
+    $address->update();
+
+});
